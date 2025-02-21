@@ -6,11 +6,11 @@
 /*   By: navera-m <navera-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:13:20 by navera-m          #+#    #+#             */
-/*   Updated: 2025/02/19 15:28:58 by navera-m         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:58:35 by navera-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/ft_printf.h"
+#include "ft_printf.h"
 
 int	format(char c, va_list args)
 {
@@ -22,7 +22,7 @@ int	format(char c, va_list args)
 	else if (c == 's')
 			i += ft_putstrprint(va_arg(args, char *));
 	else if (c == 'p')
-			i += ft_putpointerprint(va_arg(args, void *));
+			i += ft_putpointerprint(va_arg(args, long unsigned int));
 	else if (c == 'd' || c == 'i')
 			i += ft_putnbrprint(va_arg(args, int));
 	else if (c == 'u')
@@ -42,6 +42,8 @@ int	ft_printf(const char *s, ...)
 	int		i;
 	va_list	args;
 
+	if (!s)
+		return (0);
 	count = 0;
 	i = 0;
 	va_start(args, s);
@@ -56,15 +58,4 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (count);
 }
-
-
-
-/* int main (void)
-{
-	const char *k;
-	
-	k = "hola 42, 10C6"; falta anadir Nao, chequea la guia
-	printf("%s\n", k);
-	return (0);
-} */
 
